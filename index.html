@@ -96,6 +96,8 @@
         const posts = getPosts();
         const postsContainer = document.getElementById('userPosts');
         postsContainer.innerHTML = '';
+        // Trier les posts par date décroissante
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
         posts.forEach((post, index) => {
             postsContainer.innerHTML += `
                 <div class="post">
