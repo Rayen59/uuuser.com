@@ -29,6 +29,38 @@
             max-width: 100%;
             height: auto;
         }
+        button {
+            background-color: #28a745; /* Vert */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #218838; /* Vert foncé */
+            transform: scale(1.05);
+        }
+        button.delete {
+            background-color: #dc3545; /* Rouge */
+        }
+        button.delete:hover {
+            background-color: #c82333; /* Rouge foncé */
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+        input[type="file"] {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -36,8 +68,8 @@
 <div class="container">
     <h1>المشاركات</h1>
     <div>
-        <input type="text" id="postTitle" placeholder="عنوان المشاركة">
-        <textarea id="postContent" placeholder="محتوى المشاركة"></textarea>
+        <input type="text" id="postTitle" placeholder="عنوان المشاركة" required>
+        <textarea id="postContent" placeholder="محتوى المشاركة" required></textarea>
         <input type="file" id="postFile" accept="image/*,video/*">
         <button onclick="addPost()">إضافة مشاركة</button>
     </div>
@@ -70,7 +102,7 @@
                     <h3>${post.title}</h3>
                     <p>${post.content}</p>
                     ${post.fileUrl ? (post.fileType.startsWith('image') ? `<img src="${post.fileUrl}" alt="صورة">` : `<video src="${post.fileUrl}" controls></video>`) : ''}
-                    <button onclick="deletePost(${index})">حذف</button>
+                    <button class="delete" onclick="deletePost(${index})">حذف</button>
                 </div>
             `;
         });
